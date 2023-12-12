@@ -21,7 +21,26 @@ public class DatabaseClient {
     }
 
     public static synchronized DatabaseClient getInstance(Context mCtx) {
-        if (mInstance == null) {
+        
+		/* ********OpenRefactory Warning********
+		 Potential data race detected!
+		
+		The data access in 
+		mInstance == null
+		may have race with 1 other access.
+		
+		The mentioned access is performed in a thread spawned by 
+		thread.start()
+		in file, MovieDetailsFragment.java.
+		
+		It may have contending concurrent access 
+		
+		in file, DatabaseClient.java, class DatabaseClient, method getInstance, 
+		
+		mInstance=new DatabaseClient(mCtx)
+		
+		*/
+		if (mInstance == null) {
             mInstance = new DatabaseClient(mCtx);
         }
         return mInstance;
